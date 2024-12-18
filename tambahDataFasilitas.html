@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Data Fasilitas</title>
+    <script>
+        // Validasi Form Tambah Fasilitas
+        function validateFasilitas() {
+            const namaFasilitas = document.getElementById("namaFasilitas").value.trim();
+            const deskripsi = document.getElementById("deskripsi").value.trim();
+
+            if (!namaFasilitas || !deskripsi) {
+                alert("Semua kolom pada form tambah fasilitas harus diisi!");
+                return false;
+            }
+
+            alert("Data Fasilitas Berhasil Ditambahkan!");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Tambah Data Fasilitas</h1>
+    <form onsubmit="return validateFasilitas();">
+        <label for="namaFasilitas">Nama Fasilitas:</label><br>
+        <input type="text" id="namaFasilitas" name="namaFasilitas" required><br><br>
+
+        <label for="deskripsi">Deskripsi Fasilitas:</label><br>
+        <textarea id="deskripsi" name="deskripsi" rows="4" cols="50" required></textarea><br><br>
+
+        <button type="submit">Tambah Fasilitas</button>
+    </form>
+</body>
+</html>

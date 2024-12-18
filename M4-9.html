@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+    <!-- JavaScript -->
+    <script>
+        function penjumlahan() {
+            const bilangan1 = parseFloat(document.getElementById("angka1").value);
+            const bilangan2 = parseFloat(document.getElementById("angka2").value);
+
+            // Menghitung jumlah
+            const total = bilangan1 + bilangan2;
+            document.getElementById("hasil").value = total;
+        }
+    </script>
+</head>
+<body>
+    <h1>Penjumlahan</h1>
+    <form name="form1">
+        <table border="0">
+            <tr>
+                <td><label for="angka1">Angka 1</label></td>
+                <td><input type="number" name="angka1" id="angka1" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">+</td>
+            </tr>
+            <tr>
+                <td><label for="angka2">Angka 2</label></td>
+                <td><input type="number" name="angka2" id="angka2" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="button" onclick="penjumlahan()">=</button>
+                    <button type="reset">C</button>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="hasil">Hasil</label></td>
+                <td><input type="number" name="hasil" id="hasil" readonly /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

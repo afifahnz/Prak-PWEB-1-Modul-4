@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perhitungan Gaji</title>
+    <script>
+        function hit() {
+            const golongan = document.forms["form1"]["gol"].value;
+            const jumlahAnak = parseInt(document.forms["form1"]["anak"].value) || 0;
+
+            let gajiPokok = 0;
+            let persenTunjangan = 0;
+
+            if (golongan === "I") {
+                gajiPokok = 250000;
+                persenTunjangan = 0.05;
+            } else if (golongan === "II") {
+                gajiPokok = 300000;
+                persenTunjangan = 0.10;
+            } else if (golongan === "III") {
+                gajiPokok = 350000;
+                persenTunjangan = 0.15;
+            }
+
+            const tunjangan = (jumlahAnak * gajiPokok) * persenTunjangan;
+            const gajiBersih = gajiPokok + tunjangan;
+
+            document.getElementById("gapok").value = gajiPokok;
+            document.getElementById("tunjangan").value = tunjangan;
+            document.getElementById("gaji").value = gajiBersih;
+        }
+
+        function resetForm() {
+            document.forms["form1"].reset();
+        }
+    </script>
+</head>
+<body>
+    <h2>PERHITUNGAN GAJI</h2>
+    <form name="form1">
+        <label for="gol">Golongan:</label>
+        <select name="gol" id="gol">
+            <option value="I">I</option>
+            <option value="II">II</option>
+            <option value="III">III</option>
+        </select><br><br>
+
+        <label for="anak">Jumlah Anak:</label>
+        <input type="number" name="anak" id="anak" size="10" maxlength="10"><br><br>
+
+        <input type="button" name="hitung" value="Hitung" onclick="hit()">
+        <input type="reset" name="Batal" value="Batal" onclick="resetForm()"><br><br>
+
+        <label for="gapok">Gaji Pokok:</label>
+        <input type="text" name="gapok" id="gapok" readonly><br><br>
+
+        <label for="tunjangan">Tunjangan:</label>
+        <input type="text" name="tunjangan" id="tunjangan" readonly><br><br>
+
+        <label for="gaji">Gaji Bersih:</label>
+        <input type="text" name="gaji" id="gaji" readonly><br><br>
+    </form>
+</body>
+</html>

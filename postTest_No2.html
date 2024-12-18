@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota Penjualan</title>
+    <link rel="stylesheet" href="../CSS/stylePenjualanNota.css" />
+</head>
+<body>
+    <h2>Data Penjualan Barang</h2>
+    <div class="container">
+        <div class="form-container">
+            <form id="penjualanForm">
+                <table class="form-table">
+                    <tr>
+                        <th><label for="kode">Kode</label></th>
+                        <td>
+                            <select id="kode" onchange="updateBarang()">
+                                <option value="">-Pilih Salah Satu-</option>
+                                <option value="B001">B001</option>
+                                <option value="B002">B002</option>
+                                <option value="B003">B003</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="jumlahBeli">Jumlah Beli</label></th>
+                        <td><input type="number" id="jumlahBeli" value="0" oninput="hitungTotal()"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="namaBarang">Nama Barang</label></th>
+                        <td><input type="text" id="namaBarang" readonly></td>
+                    </tr>
+                    <tr>
+                        <th><label for="harga">Harga</label></th>
+                        <td><input type="number" id="harga" readonly></td>
+                    </tr>
+                    <tr>
+                        <th><label for="jumlahBayar">Jumlah Bayar</label></th>
+                        <td><input type="number" id="jumlahBayar" readonly></td>
+                    </tr>
+                    <tr>
+                        <th><label for="potongan">Potongan</label></th>
+                        <td><input type="number" id="potongan" readonly></td>
+                    </tr>
+                    <tr>
+                        <th><label for="totalBayar">Total Bayar</label></th>
+                        <td><input type="number" id="totalBayar" readonly></td>
+                    </tr>
+                </table>
+                <button type="button" onclick="tampilkanNota()">TAMPILKAN</button>
+            </form>
+        </div>
+        <div id="outputNota"></div>
+    </div>
+
+    <script>
+        function updateBarang() {
+            const kode = document.getElementById("kode").value;
+            let namaBarang = "";
+            let harga = 0;
+
+            if (kode === "B001") {
+                namaBarang = "Buku";
+                harga = 5000;
+            } else if (kode === "B002") {
+                namaBarang = "Penggaris";
+                harga = 1500;
+            } else if (kode === "B003") {
+                namaBarang = "Pulpen";
+                harga = 2000;
+            }
+
+            document.getElementById("namaBarang").value = namaBarang;
+            document.getElementById("harga").value = harga;
+            hitungTotal();
+        }
+
+        function hitungTotal() {
+            const harga = parseInt(document.getElementById("harga").value) || 0;
+            const jumlahBeli = parseInt(document.getElementById("jumlahBeli").value) || 0;
+            let jumlahBayar = harga * jumlahBeli;
+            let potongan = 0;
+
+            if (jumlahBeli >= 0 && jumlahBeli <= 10) {
+                potongan = 0.05 * jumlahBayar;
+            } else if (jumlahBeli >= 11 && jumlahBeli <= 20) {
+                potongan = 0.10 * jumlahBayar;
+            } else if (jumlahBeli > 20) {
+                potongan = 0.15 * jumlahBayar;
+            }
+
+            const totalBayar = jumlahBayar - potongan;
+
+            document.getElementById("jumlahBayar").value = jumlahBayar;
+            document.getElementById("potongan").value = potongan;
+            document.getElementById("totalBayar").value = totalBayar;
+        }
+
+        function tampilkanNota() {
+            const kode = document.getElementById("kode").value;
+            const namaBarang = document.getElementById("namaBarang").value;
+            const harga = document.getElementById("harga").value;
+            const jumlahBeli = document.getElementById("jumlahBeli").value;
+            const jumlahBayar = document.getElementById("jumlahBayar").value;
+            const potongan = document.getElementById("potongan").value;
+            const totalBayar = document.getElementById("totalBayar").value;
+
+            const nota = `
+                <br><h3>Nota Penjualan</h3><br>
+                <p>Kode Barang &nbsp;&nbsp;= ${kode}</p>
+                <p>Nama Barang &nbsp;= ${namaBarang}</p>
+                <p>Harga Barang &nbsp;= ${harga}</p>
+                <p>Jumlah Beli &nbsp;&nbsp;&nbsp;&nbsp;= ${jumlahBeli}</p>
+                <p>- - - - - - - - - - - - - - - - - - - - - - - - - - </p>
+                <p>Jumlah Bayar &nbsp;= ${jumlahBayar}</p>
+                <p>Potongan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = ${potongan}</p>
+                <p>============================</p>
+                <p>Total Bayar &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= ${totalBayar}</p>
+            `;
+
+            document.getElementById("outputNota").innerHTML = nota;
+        }
+    </script>
+</body>
+</html>

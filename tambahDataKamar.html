@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Data Fasilitas</title>
+    <script>
+        // Validasi Form Tambah Fasilitas
+        function validateFasilitas() {
+            const idFasilitas = document.getElementById("idFasilitas").value.trim();
+            const namaFasilitas = document.getElementById("namaFasilitas").value.trim();
+            const hargaWeekend = document.getElementById("hargaWeekend").value.trim();
+            const hargaWeekday = document.getElementById("hargaWeekday").value.trim();
+            const fasilitas = document.getElementById("fasilitas").value.trim();
+
+            let valid = true;
+
+            // Validasi ID Fasilitas
+            if (!idFasilitas || isNaN(idFasilitas) || parseInt(idFasilitas) <= 0) {
+                alert("ID Fasilitas harus berupa angka positif!");
+                valid = false;
+            }
+
+            // Validasi Nama Fasilitas
+            if (!namaFasilitas) {
+                alert("Nama Fasilitas tidak boleh kosong!");
+                valid = false;
+            }
+
+            // Validasi Harga Weekend
+            if (!hargaWeekend || isNaN(hargaWeekend) || parseInt(hargaWeekend) <= 0) {
+                alert("Harga Weekend harus berupa angka positif!");
+                valid = false;
+            }
+
+            // Validasi Harga Weekday
+            if (!hargaWeekday || isNaN(hargaWeekday) || parseInt(hargaWeekday) <= 0) {
+                alert("Harga Weekday harus berupa angka positif!");
+                valid = false;
+            }
+
+            // Validasi Fasilitas
+            if (!fasilitas) {
+                alert("Fasilitas tidak boleh kosong!");
+                valid = false;
+            }
+
+            if (valid) {
+                alert("Data Fasilitas Berhasil Ditambahkan!");
+                return true;
+            }
+
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <h1>Tambah Data Fasilitas</h1>
+    <form onsubmit="return validateFasilitas();">
+        <label for="idFasilitas">ID Fasilitas:</label><br>
+        <input type="number" id="idFasilitas" name="idFasilitas" required><br><br>
+
+        <label for="namaFasilitas">Nama Fasilitas:</label><br>
+        <input type="text" id="namaFasilitas" name="namaFasilitas" required><br><br>
+
+        <label for="hargaWeekend">Harga Weekend (Rp):</label><br>
+        <input type="number" id="hargaWeekend" name="hargaWeekend" required><br><br>
+
+        <label for="hargaWeekday">Harga Weekday (Rp):</label><br>
+        <input type="number" id="hargaWeekday" name="hargaWeekday" required><br><br>
+
+        <label for="fasilitas">Fasilitas:</label><br>
+        <textarea id="fasilitas" name="fasilitas" rows="4" cols="50" 
+            placeholder="Masukkan fasilitas, contoh: WiFi, Kolam Renang" required></textarea><br><br>
+
+        <button type="submit">Tambah Fasilitas</button>
+    </form>
+</body>
+</html>
